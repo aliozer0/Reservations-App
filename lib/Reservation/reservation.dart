@@ -17,16 +17,6 @@ class ReservationScreen extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 63, 17, 177),
           foregroundColor: Colors.white,
         ),
-        body: Container(
-          width: size.width,
-          height: size.height,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                ReservationCard(),
-              ],
-            ),
-          ),
-        ));
+        body: ReservationCard());
   }
 }
