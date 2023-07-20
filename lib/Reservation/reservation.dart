@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:resv/widget/DropDownMenu.dart';
 import 'package:rxdart/subjects.dart';
 import '../global/reservatıon_lıst_json.dart';
@@ -46,7 +47,9 @@ class _ReservationScreenState extends State<ReservationScreen> {
           builder: (context, snapshot) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return ReservationCard(item: _listBehaviorSubject$.value[index],);},
+
+                return ReservationCard(item: _listBehaviorSubject$.value[index],);
+                },
               itemCount: _listBehaviorSubject$.value.length,
             );
           }
