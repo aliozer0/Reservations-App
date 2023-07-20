@@ -5,8 +5,13 @@ import '../widget/Resevation_cart.dart';
 
 class ReservationScreen extends StatelessWidget {
   ReservationScreen({super.key});
-  final List<String> rooms = <String>['Room 1', 'Room 2', 'Room 3'];
-  void _selectedRooms = 'Room1';
+  final List<String> ReservationList = [
+    'Öğe 1',
+    'Öğe 2',
+    'Öğe 3',
+
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +22,11 @@ class ReservationScreen extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 63, 17, 177),
           foregroundColor: Colors.white,
         ),
-        body: ReservationCard());
+      body:  ListView.builder(
+        itemBuilder: (context,index) {return ReservationCard();}
+           , itemCount: 10,
+      )
+
+        );
   }
 }
