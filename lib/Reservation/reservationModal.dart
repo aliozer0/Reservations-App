@@ -4,11 +4,6 @@
 
 import 'dart:convert';
 
-ReservationModel reservationModelFromJson(String str) =>
-    ReservationModel.fromJson(json.decode(str));
-
-String reservationModelToJson(ReservationModel data) =>
-    json.encode(data.toJson());
 
 class ReservationModel {
   int? hotelid;

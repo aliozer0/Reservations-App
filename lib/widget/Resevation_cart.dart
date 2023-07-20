@@ -1,10 +1,24 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class ReservationCard extends StatelessWidget {
-  const ReservationCard({super.key});
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:resv/Reservation/reservationModal.dart';
+
+
+class ReservationCard extends StatefulWidget {
+  ReservationModel item;
+   ReservationCard({super.key,required this.item});
 
   @override
-  Widget build(BuildContext context) {
+  State<ReservationCard> createState() => _ReservationCardState();
+}
+
+class _ReservationCardState extends State<ReservationCard> {
+
+  @override
+  Widget build(BuildContext context,) {
+
+
     return Center(
       child: Stack(
         alignment: Alignment.topCenter,
@@ -73,13 +87,13 @@ class ReservationCard extends StatelessWidget {
                     const Divider(
                       color: Colors.black,
                     ),
-                    const Row(
+                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Text(
-                            'Ali OZER',
+                            widget.item.guestnames ?? '-',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
@@ -159,7 +173,7 @@ class ReservationCard extends StatelessWidget {
                                 color: Colors.black,
                               ),
                               Container(
-                                child: const Text("STD",
+                                child: const Text('STD',
                                     style: TextStyle(fontSize: 20)),
                               )
                             ],
@@ -241,7 +255,7 @@ class ReservationCard extends StatelessWidget {
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                     children: [
-                                      Text('Ali OZER'),
+                                      Text(widget.item.guestnames ?? ''),
                                       Container(
                                         height: 40,
                                         width: 40,
@@ -265,7 +279,7 @@ class ReservationCard extends StatelessWidget {
                                   mainAxisAlignment:
                                   MainAxisAlignment.spaceAround,
                                   children: [
-                                    Text('Turkey'),
+                                    Text(widget.item.nationality),
                                     SizedBox(
                                       width: 10,
                                     ),
@@ -321,14 +335,14 @@ class ReservationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  "Room",
+                  'Room',
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 Text(
-                  "101",
+                  widget.item.roomno ?? '',
                   style: TextStyle(fontSize: 20),
                 ),
               ],
