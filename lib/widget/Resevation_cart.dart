@@ -1,71 +1,70 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:resv/Reservation/reservationModal.dart';
-import 'package:resv/global/reservat%C4%B1on_l%C4%B1st_json.dart';
 
 class ReservationCard extends StatefulWidget {
   ReservationModel item;
-   ReservationCard({super.key,required this.item});
+  ReservationCard({super.key, required this.item});
 
   @override
   State<ReservationCard> createState() => _ReservationCardState();
 }
 
 class _ReservationCardState extends State<ReservationCard> {
-
   @override
-  Widget build(BuildContext context,) {
-
-
+  Widget build(
+    BuildContext context,
+  ) {
     return Center(
       child: Container(
         color: Colors.lightBlueAccent,
-        height: MediaQuery.of(context).size.height*0.45,
-        width: double.infinity,
-
+        width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround
-              ,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-
-                  child:Row(
+                  child: const Row(
                     children: [
-                          Text('Room' , style: TextStyle(fontSize: 25, color: Colors.deepPurpleAccent,backgroundColor: Colors.black)),
-                      SizedBox(width: 2,),
+                      Text('Room',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.deepPurpleAccent,
+                              backgroundColor: Colors.black)),
+                      SizedBox(
+                        width: 2,
+                      ),
                       Text('101')
                     ],
                   ),
                 ),
                 Container(
-                 child: Column(
-                   children: [
-                     Text(
-                       'July / 09',style: TextStyle(fontSize: 25, color: Colors.deepPurpleAccent,backgroundColor: Colors.black)
-                     ),
-                     Text(
-                       'July / 12',style: TextStyle(fontSize: 25, color: Colors.deepPurpleAccent,backgroundColor: Colors.black)
-                     )
-                   ],
-                 ),
+                  child: Column(
+                    children: [
+                      Text('July / 09',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.deepPurpleAccent,
+                              backgroundColor: Colors.black)),
+                      Text('July / 12',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.deepPurpleAccent,
+                              backgroundColor: Colors.black))
+                    ],
+                  ),
                 ),
-
               ],
             ),
-
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const Divider(
                   color: Colors.black,
                 ),
-                 Row(
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
@@ -143,8 +142,7 @@ class _ReservationCardState extends State<ReservationCard> {
                               SizedBox(
                                 width: 2,
                               ),
-                              Text("Gece",
-                                  style: TextStyle(fontSize: 20)),
+                              Text("Gece", style: TextStyle(fontSize: 20)),
                             ],
                           ),
                           VerticalDivider(
@@ -167,8 +165,7 @@ class _ReservationCardState extends State<ReservationCard> {
                       Container(
                         child: Container(
                           child: const Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
                                 "Ort. Gece Fiyatı",
@@ -181,16 +178,14 @@ class _ReservationCardState extends State<ReservationCard> {
                               SizedBox(
                                 width: 6,
                               ),
-                              Text("281.25 TRY",
-                                  style: TextStyle(fontSize: 20))
+                              Text("281.25 TRY", style: TextStyle(fontSize: 20))
                             ],
                           ),
                         ),
                       ),
                       Container(
                         child: const Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text("Toplam Fiyat",
                                 style: TextStyle(fontSize: 20)),
@@ -214,7 +209,6 @@ class _ReservationCardState extends State<ReservationCard> {
                 const Divider(
                   color: Colors.black,
                 ),
-
               ],
             )
           ],
@@ -223,4 +217,3 @@ class _ReservationCardState extends State<ReservationCard> {
     );
   }
 }
-

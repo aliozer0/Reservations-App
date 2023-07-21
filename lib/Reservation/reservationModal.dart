@@ -2,9 +2,6 @@
 //
 //     final reservationModel = reservationModelFromJson(jsonString);
 
-import 'dart:convert';
-
-
 class ReservationModel {
   int? hotelid;
   int? portalid;
@@ -70,7 +67,7 @@ class ReservationModel {
   dynamic mctotalprice;
   dynamic repguest;
   int? freechild;
-  int? paidchild;
+  int? paidchaild;
   int? night;
   int? pax;
   dynamic currdate;
@@ -260,6 +257,8 @@ class ReservationModel {
   dynamic arrivaltransfer;
   dynamic departuretransfer;
   dynamic allnotes;
+
+  var paidchild;
 
   ReservationModel({
     this.hotelid,

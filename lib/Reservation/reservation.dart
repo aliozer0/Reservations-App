@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'package:resv/widget/DropDownMenu.dart';
+import 'package:resv/resnewscreen.dart';
 import 'package:rxdart/subjects.dart';
+
 import '../global/reservatıon_lıst_json.dart';
-import '../widget/DropDownMenu.dart';
-import '../widget/Resevation_cart.dart';
 import 'reservationModal.dart';
 
 class ReservationScreen extends StatefulWidget {
@@ -15,7 +13,8 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
-  BehaviorSubject<List<ReservationModel>> _listBehaviorSubject$ = BehaviorSubject.seeded([]);
+  BehaviorSubject<List<ReservationModel>> _listBehaviorSubject$ =
+      BehaviorSubject.seeded([]);
 
   getReservationsList() {
     List<ReservationModel> tempList = [];
@@ -43,16 +42,16 @@ class _ReservationScreenState extends State<ReservationScreen> {
           foregroundColor: Colors.white,
         ),
         body: StreamBuilder(
-          stream: _listBehaviorSubject$.stream,
-          builder: (context, snapshot) {
-            return ListView.builder(
-              itemBuilder: (context, index) {
-
-                return ReservationCard(item: _listBehaviorSubject$.value[index],);
+            stream: _listBehaviorSubject$.stream,
+            builder: (context, snapshot) {
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return ResNewScreen(
+                    item: _listBehaviorSubject$.value[index],
+                  );
                 },
-              itemCount: _listBehaviorSubject$.value.length,
-            );
-          }
-        ));
+                itemCount: _listBehaviorSubject$.value.length,
+              );
+            }));
   }
 }
