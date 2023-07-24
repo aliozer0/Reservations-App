@@ -28,11 +28,13 @@ class _ReservationCardState extends State<ReservationCard> {
                 Container(
                   child: const Row(
                     children: [
-                      Text('Room',
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.deepPurpleAccent,
-                              backgroundColor: Colors.black)),
+                      Text(
+                        'Room',
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.deepPurpleAccent,
+                            backgroundColor: Colors.black),
+                      ),
                       SizedBox(
                         width: 2,
                       ),
