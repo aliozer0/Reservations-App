@@ -19,7 +19,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            contentPadding: EdgeInsets.all(0),
+            contentPadding: EdgeInsets.all(10),
             insetPadding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
             title: Container(
@@ -40,6 +40,8 @@ class _ResNewScreenState extends State<ResNewScreen> {
               ),
             ),
             content: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.9,
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 9,
@@ -68,16 +70,13 @@ class _ResNewScreenState extends State<ResNewScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: const Text(
-                                    "ALi OZER",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                    ),
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
+                                Text(
+                                  "${widget.item!.guestnames ?? '-'}",
+                                  style: const TextStyle(
+                                    fontSize: 20,
                                   ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 3,
                                 ),
                                 Row(
                                   children: [
@@ -130,9 +129,10 @@ class _ResNewScreenState extends State<ResNewScreen> {
                               children: [
                                 Container(
                                   alignment: Alignment.topLeft,
-                                  child: Text("TC : 39125137506"),
+                                  child: Text(" TC : 39125137506"),
                                 ),
                                 Container(
+                                  padding: EdgeInsets.only(right: 3),
                                   child: Text("Age : 21"),
                                 )
                               ],
@@ -151,12 +151,15 @@ class _ResNewScreenState extends State<ResNewScreen> {
                               children: [
                                 Container(
                                   alignment: Alignment.topLeft,
-                                  child: Text("Pasport : U198457"),
+                                  child: Text(" Pasport : U198457"),
                                 ),
-                                const Text(
-                                  "GERMAN",
-                                  style: TextStyle(
-                                    fontSize: 20,
+                                Container(
+                                  padding: EdgeInsets.only(right: 3),
+                                  child: const Text(
+                                    "GERMAN",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 )
                               ],
