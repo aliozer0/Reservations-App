@@ -180,7 +180,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.only(top: 20, left: 5, right: 5),
+      margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
       alignment: Alignment.center,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
       width: size.width,
@@ -188,6 +188,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
           child: Column(
         children: [
           Container(
+            padding: EdgeInsets.only(left: 5),
             decoration: BoxDecoration(
               boxShadow: const [
                 BoxShadow(
@@ -204,9 +205,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
               border: Border.all(color: Colors.black12),
               color: const Color(0xffF6F4EB),
             ),
-            width: size.width,
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.all(size.width * 0.02),
             child: Container(
                 width: size.width - size.width * 0.08,
                 child: Row(
@@ -240,7 +239,6 @@ class _ResNewScreenState extends State<ResNewScreen> {
                 )),
           ),
           Container(
-            padding: EdgeInsets.all(size.width * 0.02),
             decoration: BoxDecoration(
               color: const Color(0xffF6F4EB),
               border: Border.all(color: Colors.black12),

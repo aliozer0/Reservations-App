@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:resv/Reservation/ReservationServic.dart';
 import 'package:resv/resnewscreen.dart';
-import 'package:rxdart/subjects.dart';
-
-import '../global/reservatıon_lıst_json.dart';
-import 'reservationModal.dart';
 
 class ReservationScreen extends StatefulWidget {
   const ReservationScreen({Key? key}) : super(key: key);
@@ -13,23 +10,17 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
-  BehaviorSubject<List<ReservationModel>> _listBehaviorSubject$ =
-      BehaviorSubject.seeded([]);
+  final service = ReservationServis();
 
-  getReservationsList() {
-    List<ReservationModel> tempList = [];
-    temp_reservations.forEach((element) {
-      // _listBehaviorSubject$.value.add(ReservationModel.fromJson(element));
-      tempList.add(ReservationModel.fromJson(element));
-    });
-    //_listBehaviorSubject$.add(_listBehaviorSubject$.value);
-    _listBehaviorSubject$.add(tempList);
-  }
+  // final BehaviorSubject<List<ReservationModel>> _resSubject =
+  //     BehaviorSubject<List<ReservationModel>>();
+  // Stream<List<ReservationModel>> get ListStream => _resSubject.stream;
 
   @override
   void initState() {
     super.initState();
-    getReservationsList();
+    service.sendPostRequest();
+    // getReservationsList();
   }
 
   @override
@@ -42,15 +33,15 @@ class _ReservationScreenState extends State<ReservationScreen> {
           foregroundColor: Colors.white,
         ),
         body: StreamBuilder(
-            stream: _listBehaviorSubject$.stream,
+            stream: service.postResultSubject.stream,
             builder: (context, snapshot) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   return ResNewScreen(
-                    item: _listBehaviorSubject$.value[index],
+                    item: service.postResultSubject.value[index],
                   );
                 },
-                itemCount: _listBehaviorSubject$.value.length,
+                itemCount: service.postResultSubject.value.length,
               );
             }));
   }
