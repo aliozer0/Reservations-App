@@ -19,13 +19,13 @@ class _ReservationScreenState extends State<ReservationScreen> {
   @override
   void initState() {
     super.initState();
-    service.sendPostRequest();
-
-    // getReservationsList();
+    service.getReservations();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
@@ -35,15 +35,29 @@ class _ReservationScreenState extends State<ReservationScreen> {
         ),
         body: StreamBuilder(
             stream: service.postResultSubject.stream,
+            initialData: true,
             builder: (context, snapshot) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return ResNewScreen(
-                    item: service.postResultSubject.value[index],
-                  );
-                },
-                itemCount: service.postResultSubject.value.length,
-              );
+              if (service.postResultSubject.value == null) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.blue,
+                  ),
+                );
+              } else if (service.postResultSubject.value!.isEmpty) {
+                return const Text("Reservation Listesi boş");
+              } else {
+                return ListView.builder(
+                  itemCount: service.postResultSubject.value!.length,
+                  itemBuilder: (
+                    context,
+                    index,
+                  ) {
+                    return ResNewScreen(
+                      item: service.postResultSubject.value![index],
+                    );
+                  },
+                );
+              }
             }));
   }
 }

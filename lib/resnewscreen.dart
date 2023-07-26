@@ -190,7 +190,11 @@ class _ResNewScreenState extends State<ResNewScreen> {
       child: GestureDetector(
         onTap: () {
           _openNewScreen(context);
-          services.sendPostGuestRequest();
+          if (widget.item!.resid != null) {
+            services.getReservationDetailRequest(widget.item!.resid!);
+          } else {
+            Text("ResId Eşleşmedi");
+          }
         },
         child: Container(
             child: Column(

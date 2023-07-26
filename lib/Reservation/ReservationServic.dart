@@ -6,10 +6,10 @@ import 'package:rxdart/rxdart.dart';
 
 class ReservationServis {
   ReservationModel? item;
-  final BehaviorSubject<List<ReservationModel>> postResultSubject =
-      BehaviorSubject<List<ReservationModel>>.seeded([]);
+  final BehaviorSubject<List<ReservationModel>?> postResultSubject =
+      BehaviorSubject.seeded(null);
 
-  void sendPostRequest() async {
+  void getReservations() async {
     String url = 'https://4001.hoteladvisor.net/Select/QA_HOTEL_RESERVATION';
     try {
       final response = await http.post(
@@ -34,7 +34,12 @@ class ReservationServis {
 
         var resultJson = jsonDecode(utf8.decode(response.bodyBytes));
         resultJson['ResultSets'][0].forEach((item) {
-          postResultSubject.value.add(ReservationModel.fromJson(item));
+          if (postResultSubject.value == null) {
+            postResultSubject.value = [];
+            postResultSubject.value!.add(ReservationModel.fromJson(item));
+          } else {
+            postResultSubject.value!.add(ReservationModel.fromJson(item));
+          }
         });
         postResultSubject.add(postResultSubject.value);
       } else {
@@ -46,7 +51,7 @@ class ReservationServis {
     }
   }
 
-  void sendPostGuestRequest() async {
+  void getReservationDetailRequest(int resId) async {
     String url = 'https://4001.hoteladvisor.net/Select/QA_HOTEL_GUEST';
 
     try {
@@ -62,8 +67,8 @@ class ReservationServis {
           "Where": [
             {"Column": "ISDELETED", "Operator": "=", "Value": 0, "IsNull": 0},
             {"Column": "ISDISABLED", "Operator": "=", "Value": 0, "IsNull": 0},
-            {"Column": "RESID", "Operator": "=", "Value": item?.resid},
-            {"Column": "HOTELID", "Operator": "=", "Value": item?.hotelid}
+            {"Column": "RESID", "Operator": "=", "Value": resId},
+            {"Column": "HOTELID", "Operator": "=", "Value": 24204}
           ],
           "OrderBy": [
             {"Column": "SORTORDER", "Direction": "ASC"}
@@ -97,7 +102,10 @@ class ReservationServis {
         print(" Guest Istek başarılı ");
         var resultJson = jsonDecode(utf8.decode(response.bodyBytes));
         resultJson['ResultSets'][0].forEach((item) {
-          postResultSubject.value.add(ReservationModel.fromJson(item));
+          if (postResultSubject.value == null) {
+            postResultSubject.value = [];
+            postResultSubject.value!.add(ReservationModel.fromJson(item));
+          } else {}
         });
         postResultSubject.add(postResultSubject.value);
       } else {
