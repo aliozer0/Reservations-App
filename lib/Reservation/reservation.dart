@@ -20,6 +20,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
   void initState() {
     super.initState();
     service.sendPostRequest();
+
     // getReservationsList();
   }
 
