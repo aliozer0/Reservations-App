@@ -12,10 +12,6 @@ class ReservationScreen extends StatefulWidget {
 class _ReservationScreenState extends State<ReservationScreen> {
   final service = ReservationServis();
 
-  // final BehaviorSubject<List<ReservationModel>> _resSubject =
-  //     BehaviorSubject<List<ReservationModel>>();
-  // Stream<List<ReservationModel>> get ListStream => _resSubject.stream;
-
   @override
   void initState() {
     super.initState();
@@ -34,26 +30,26 @@ class _ReservationScreenState extends State<ReservationScreen> {
           foregroundColor: Colors.white,
         ),
         body: StreamBuilder(
-            stream: service.postResultSubject.stream,
-            initialData: true,
+            stream: service.reservationList$.stream,
             builder: (context, snapshot) {
-              if (service.postResultSubject.value == null) {
+              if (service.reservationList$.value == null) {
                 return const Center(
                   child: CircularProgressIndicator(
-                    color: Colors.blue,
+                    color: Colors.red,
                   ),
                 );
-              } else if (service.postResultSubject.value!.isEmpty) {
+              } else if (service.reservationList$.value!.isEmpty) {
                 return const Text("Reservation Listesi boş");
               } else {
                 return ListView.builder(
-                  itemCount: service.postResultSubject.value!.length,
+                  itemCount: service.reservationList$.value!.length,
                   itemBuilder: (
                     context,
                     index,
                   ) {
                     return ResNewScreen(
-                      item: service.postResultSubject.value![index],
+                      item: service.reservationList$.value![index],
+                      // items: service.reservationGuestList$.value![index],
                     );
                   },
                 );

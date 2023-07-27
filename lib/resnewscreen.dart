@@ -9,15 +9,13 @@ class ResNewScreen extends StatefulWidget {
     required this.item,
   });
   ReservationModel? item;
-
   @override
   State<ResNewScreen> createState() => _ResNewScreenState();
 }
 
-final services = ReservationServis();
-
 class _ResNewScreenState extends State<ResNewScreen> {
-  void _openNewScreen(BuildContext context) {
+  final services = ReservationServis();
+  void openNewScreen(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -45,135 +43,160 @@ class _ResNewScreenState extends State<ResNewScreen> {
             content: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.9,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: widget.item?.pax,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black26),
-                          borderRadius: const BorderRadius.only(
-                            bottomRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.deepPurple,
-                              offset: Offset(0.0, -2.0),
-                              blurRadius: 2.0,
-                              spreadRadius: 2.0,
-                            )
-                          ]),
-                      child: Column(
-                        children: [
-                          Container(
-                            color: Color(0xffFFAF3F0),
-                            padding: EdgeInsets.all(5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "${widget.item!.guestnames ?? '-'}",
-                                  style: const TextStyle(
-                                    fontSize: 20,
+              child: StreamBuilder(
+                  stream: services.reservationGuestList$.stream,
+                  builder: (context, snapshot) {
+                    if (services.reservationGuestList$.value == null) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.blue,
+                        ),
+                      );
+                    } else if (services.reservationGuestList$.value!.isEmpty) {
+                      return const Text("Reservation Listesi boş");
+                    } else {
+                      return ListView.builder(
+                        itemCount: services.reservationGuestList$.value!.length,
+                        itemBuilder: (context, index) {
+                          var guest =
+                              services.reservationGuestList$.value![index];
+                          return ListTile(
+                            title: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black26),
+                                  borderRadius: const BorderRadius.only(
+                                    bottomRight: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10),
                                   ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,
-                                ),
-                                Row(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.green,
-                                          borderRadius:
-                                              BorderRadius.circular(100),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.deepPurple,
+                                      offset: Offset(0.0, -2.0),
+                                      blurRadius: 2.0,
+                                      spreadRadius: 2.0,
+                                    )
+                                  ]),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    color: Color(0xffFFAF3F0),
+                                    padding: EdgeInsets.all(5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          " ${guest.name ?? '-'}  ${guest.lname ?? '-'}",
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 3,
                                         ),
-                                        padding: EdgeInsets.all(4),
-                                        child: const Icon(
-                                          Icons.add_call,
-                                          size: 25,
-                                          color: Colors.white,
+                                        Row(
+                                          children: [
+                                            InkWell(
+                                              onTap: () {},
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.green,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                ),
+                                                padding: EdgeInsets.all(4),
+                                                child: const Icon(
+                                                  Icons.add_call,
+                                                  size: 25,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            InkWell(
+                                              onTap: () {},
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                ),
+                                                padding: EdgeInsets.all(4),
+                                                child: const Icon(
+                                                  Icons.attach_file_sharp,
+                                                  size: 25,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 4,
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                        ),
-                                        padding: EdgeInsets.all(4),
-                                        child: const Icon(
-                                          Icons.attach_file_sharp,
-                                          size: 25,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Divider(height: 1, color: Color(0xff1859FFFF)),
-                          Container(
-                            color: Color(0xffFFAF3F0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(" TC : 39125137506"),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(right: 3),
-                                  child: Text("Age : 21"),
-                                )
-                              ],
-                            ),
-                          ),
-                          Divider(height: 1, color: Color(0xff1859FFFF)),
-                          Container(
-                            decoration: const BoxDecoration(
-                                color: Color(0xffFFAF3F0),
-                                borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                )),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(" Pasport : U198457"),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(right: 3),
-                                  child: const Text(
-                                    "GERMAN",
-                                    style: TextStyle(
-                                      fontSize: 20,
+                                      ],
                                     ),
                                   ),
-                                )
-                              ],
+                                  Divider(
+                                      height: 1, color: Color(0xff1859FFFF)),
+                                  Container(
+                                    color: Color(0xffFFAF3F0),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        if (guest.passportno != null)
+                                          Container(
+                                            padding: EdgeInsets.only(right: 6),
+                                            child: Text(
+                                              " Pasaport no: ${guest.passportno}",
+                                            ),
+                                          ),
+                                        if (guest.nationalityid != null)
+                                          Container(
+                                            padding: EdgeInsets.only(left: 5),
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                                "TC :${guest.nationalityid ?? '-'}"),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(
+                                      height: 1, color: Color(0xff1859FFFF)),
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xffFFAF3F0),
+                                        borderRadius: BorderRadius.only(
+                                          bottomRight: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                        )),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.only(left: 4),
+                                          child: Text(" Age: ${guest.age}"),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(right: 5),
+                                          child: Text(
+                                              "${guest.nationalityidName}"),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
+                          );
+                        },
+                      );
+                    }
+                  }),
             ));
       },
     );
@@ -188,12 +211,19 @@ class _ResNewScreenState extends State<ResNewScreen> {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
       width: size.width,
       child: GestureDetector(
-        onTap: () {
-          _openNewScreen(context);
+        onTap: () async {
           if (widget.item!.resid != null) {
-            services.getReservationDetailRequest(widget.item!.resid!);
+            bool response =
+                await services.getReservationDetailRequest(widget.item!.resid!);
+            if (response == true) {
+              openNewScreen(context);
+            } else {
+              Dialog(
+                child: Text("Bir hata oluştu."),
+              );
+            }
           } else {
-            Text("ResId Eşleşmedi");
+            Text("ResId Bulunamadı");
           }
         },
         child: Container(
@@ -361,36 +391,31 @@ class _ResNewScreenState extends State<ResNewScreen> {
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold)),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _openNewScreen(context);
-                    },
-                    child: Container(
-                      height: size.height * 0.06,
-                      width: size.width * 0.3,
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              "${widget.item?.adult ?? '-'}",
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                  Container(
+                    height: size.height * 0.06,
+                    width: size.width * 0.3,
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text(
+                            "${widget.item?.adult ?? '-'}",
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
-                          widget.item?.adult == 1
-                              ? const Icon(Icons.account_circle_sharp)
-                              : const Icon(Icons.people_outline_rounded),
-                          Text("${widget.item?.echd ?? '-'}",
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Icon(Icons.child_care_sharp),
-                        ],
-                      ),
+                        ),
+                        widget.item?.adult == 1
+                            ? const Icon(Icons.account_circle_sharp)
+                            : const Icon(Icons.people_outline_rounded),
+                        Text("${widget.item?.echd ?? '-'}",
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Icon(Icons.child_care_sharp),
+                      ],
                     ),
                   ),
                   Container(

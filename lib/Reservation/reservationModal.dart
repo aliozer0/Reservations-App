@@ -1049,3 +1049,248 @@ class ReservationModel {
         "ALLNOTES": allnotes,
       };
 }
+
+class ReservationGuestModel {
+  dynamic nationalidissuedate;
+  dynamic birthdate;
+  dynamic arrival;
+  dynamic departure;
+  dynamic passportexpiredate;
+  dynamic idexpiredate;
+  dynamic passportissuedate;
+  dynamic documenttype;
+  dynamic onlinecheckin;
+  dynamic guesttype;
+  dynamic extractfrompolicelist;
+  dynamic age;
+  dynamic idhash;
+  String? name;
+  String? lname;
+  dynamic cardno;
+  dynamic nationalidno;
+  dynamic phone;
+  dynamic email;
+  String? passportno;
+  dynamic gender;
+  dynamic birthplace;
+  dynamic poslimit;
+  dynamic vehicleplate;
+  String? fullname;
+  dynamic lastname2;
+  dynamic pincode;
+  int? id;
+  int? resid;
+  dynamic titleid;
+  int? guestid;
+  int? hotelid;
+  int? portalid;
+  int? sortorder;
+  dynamic nationalityid;
+  dynamic professionalid;
+  dynamic elektraid;
+  dynamic poscardid;
+  dynamic isdisabled;
+  dynamic isdeleted;
+  DateTime? creationDate;
+  DateTime? lastupdateDate;
+  dynamic isreservationcontact;
+  dynamic arrived;
+  dynamic departed;
+  dynamic checkinSenttime;
+  dynamic checkoutSenttime;
+  dynamic blacklist;
+  dynamic gdprconfirmed;
+  dynamic contactconfirmedemail;
+  dynamic contactconfirmedphone;
+  dynamic incognito;
+  dynamic hescode;
+  dynamic nationalityidName;
+  dynamic guestidNameIdBirth;
+  dynamic guestidBlacklist;
+  dynamic titleidTitle;
+
+  ReservationGuestModel({
+    this.nationalidissuedate,
+    this.birthdate,
+    this.arrival,
+    this.departure,
+    this.passportexpiredate,
+    this.idexpiredate,
+    this.passportissuedate,
+    this.documenttype,
+    this.onlinecheckin,
+    this.guesttype,
+    this.extractfrompolicelist,
+    this.age,
+    this.idhash,
+    this.name,
+    this.lname,
+    this.cardno,
+    this.nationalidno,
+    this.phone,
+    this.email,
+    this.passportno,
+    this.gender,
+    this.birthplace,
+    this.poslimit,
+    this.vehicleplate,
+    this.fullname,
+    this.lastname2,
+    this.pincode,
+    this.id,
+    this.resid,
+    this.titleid,
+    this.guestid,
+    this.hotelid,
+    this.portalid,
+    this.sortorder,
+    this.nationalityid,
+    this.professionalid,
+    this.elektraid,
+    this.poscardid,
+    this.isdisabled,
+    this.isdeleted,
+    this.creationDate,
+    this.lastupdateDate,
+    this.isreservationcontact,
+    this.arrived,
+    this.departed,
+    this.checkinSenttime,
+    this.checkoutSenttime,
+    this.blacklist,
+    this.gdprconfirmed,
+    this.contactconfirmedemail,
+    this.contactconfirmedphone,
+    this.incognito,
+    this.hescode,
+    this.nationalityidName,
+    this.guestidNameIdBirth,
+    this.guestidBlacklist,
+    this.titleidTitle,
+  });
+
+  factory ReservationGuestModel.fromJson(Map<String, dynamic> json) =>
+      ReservationGuestModel(
+        nationalidissuedate: json["NATIONALIDISSUEDATE"],
+        birthdate: json["BIRTHDATE"],
+        arrival: json["ARRIVAL"],
+        departure: json["DEPARTURE"],
+        passportexpiredate: json["PASSPORTEXPIREDATE"],
+        idexpiredate: json["IDEXPIREDATE"],
+        passportissuedate: json["PASSPORTISSUEDATE"],
+        documenttype: json["DOCUMENTTYPE"],
+        onlinecheckin: json["ONLINECHECKIN"],
+        guesttype: json["GUESTTYPE"],
+        extractfrompolicelist: json["EXTRACTFROMPOLICELIST"],
+        age: json["AGE"],
+        idhash: json["IDHASH"],
+        name: json["NAME"],
+        lname: json["LNAME"],
+        cardno: json["CARDNO"],
+        nationalidno: json["NATIONALIDNO"],
+        phone: json["PHONE"],
+        email: json["EMAIL"],
+        passportno: json["PASSPORTNO"],
+        gender: json["GENDER"],
+        birthplace: json["BIRTHPLACE"],
+        poslimit: json["POSLIMIT"],
+        vehicleplate: json["VEHICLEPLATE"],
+        fullname: json["FULLNAME"],
+        lastname2: json["LASTNAME2"],
+        pincode: json["PINCODE"],
+        id: json["ID"],
+        resid: json["RESID"],
+        titleid: json["TITLEID"],
+        guestid: json["GUESTID"],
+        hotelid: json["HOTELID"],
+        portalid: json["PORTALID"],
+        sortorder: json["SORTORDER"],
+        nationalityid: json["NATIONALITYID"],
+        professionalid: json["PROFESSIONALID"],
+        elektraid: json["ELEKTRAID"],
+        poscardid: json["POSCARDID"],
+        isdisabled: json["ISDISABLED"],
+        isdeleted: json["ISDELETED"],
+        creationDate: json["CREATION_DATE"] == null
+            ? null
+            : DateTime.parse(json["CREATION_DATE"]),
+        lastupdateDate: json["LASTUPDATE_DATE"] == null
+            ? null
+            : DateTime.parse(json["LASTUPDATE_DATE"]),
+        isreservationcontact: json["ISRESERVATIONCONTACT"],
+        arrived: json["ARRIVED"],
+        departed: json["DEPARTED"],
+        checkinSenttime: json["CHECKIN_SENTTIME"],
+        checkoutSenttime: json["CHECKOUT_SENTTIME"],
+        blacklist: json["BLACKLIST"],
+        gdprconfirmed: json["GDPRCONFIRMED"],
+        contactconfirmedemail: json["CONTACTCONFIRMEDEMAIL"],
+        contactconfirmedphone: json["CONTACTCONFIRMEDPHONE"],
+        incognito: json["INCOGNITO"],
+        hescode: json["HESCODE"],
+        nationalityidName: json["NATIONALITYID_NAME"],
+        guestidNameIdBirth: json["GUESTID_NAME_ID_BIRTH"],
+        guestidBlacklist: json["GUESTID_BLACKLIST"],
+        titleidTitle: json["TITLEID_TITLE"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "NATIONALIDISSUEDATE": nationalidissuedate,
+        "BIRTHDATE": birthdate,
+        "ARRIVAL": arrival,
+        "DEPARTURE": departure,
+        "PASSPORTEXPIREDATE": passportexpiredate,
+        "IDEXPIREDATE": idexpiredate,
+        "PASSPORTISSUEDATE": passportissuedate,
+        "DOCUMENTTYPE": documenttype,
+        "ONLINECHECKIN": onlinecheckin,
+        "GUESTTYPE": guesttype,
+        "EXTRACTFROMPOLICELIST": extractfrompolicelist,
+        "AGE": age,
+        "IDHASH": idhash,
+        "NAME": name,
+        "LNAME": lname,
+        "CARDNO": cardno,
+        "NATIONALIDNO": nationalidno,
+        "PHONE": phone,
+        "EMAIL": email,
+        "PASSPORTNO": passportno,
+        "GENDER": gender,
+        "BIRTHPLACE": birthplace,
+        "POSLIMIT": poslimit,
+        "VEHICLEPLATE": vehicleplate,
+        "FULLNAME": fullname,
+        "LASTNAME2": lastname2,
+        "PINCODE": pincode,
+        "ID": id,
+        "RESID": resid,
+        "TITLEID": titleid,
+        "GUESTID": guestid,
+        "HOTELID": hotelid,
+        "PORTALID": portalid,
+        "SORTORDER": sortorder,
+        "NATIONALITYID": nationalityid,
+        "PROFESSIONALID": professionalid,
+        "ELEKTRAID": elektraid,
+        "POSCARDID": poscardid,
+        "ISDISABLED": isdisabled,
+        "ISDELETED": isdeleted,
+        "CREATION_DATE": creationDate?.toIso8601String(),
+        "LASTUPDATE_DATE": lastupdateDate?.toIso8601String(),
+        "ISRESERVATIONCONTACT": isreservationcontact,
+        "ARRIVED": arrived,
+        "DEPARTED": departed,
+        "CHECKIN_SENTTIME": checkinSenttime,
+        "CHECKOUT_SENTTIME": checkoutSenttime,
+        "BLACKLIST": blacklist,
+        "GDPRCONFIRMED": gdprconfirmed,
+        "CONTACTCONFIRMEDEMAIL": contactconfirmedemail,
+        "CONTACTCONFIRMEDPHONE": contactconfirmedphone,
+        "INCOGNITO": incognito,
+        "HESCODE": hescode,
+        "NATIONALITYID_NAME": nationalityidName,
+        "GUESTID_NAME_ID_BIRTH": guestidNameIdBirth,
+        "GUESTID_BLACKLIST": guestidBlacklist,
+        "TITLEID_TITLE": titleidTitle,
+      };
+}
