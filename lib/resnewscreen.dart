@@ -70,7 +70,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
                                   ),
                                   boxShadow: const [
                                     BoxShadow(
-                                      color: Colors.deepPurple,
+                                      color: Colors.lightBlueAccent,
                                       offset: Offset(0.0, -2.0),
                                       blurRadius: 2.0,
                                       spreadRadius: 2.0,
@@ -206,7 +206,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
+      margin: const EdgeInsets.only(top: 25, left: 10, right: 10),
       alignment: Alignment.center,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
       width: size.width,
@@ -218,26 +218,26 @@ class _ResNewScreenState extends State<ResNewScreen> {
             if (response == true) {
               openNewScreen(context);
             } else {
-              Dialog(
+              const Dialog(
                 child: Text("Bir hata oluştu."),
               );
             }
           } else {
-            Text("ResId Bulunamadı");
+            const Text("ResId Bulunamadı");
           }
         },
         child: Container(
             child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 5),
+              padding: EdgeInsets.only(left: 10),
               decoration: BoxDecoration(
                 boxShadow: const [
                   BoxShadow(
-                    color: Colors.red,
-                    offset: Offset(0.0, -2.0),
+                    color: Colors.blueAccent,
+                    offset: Offset(0.2, -2.0),
                     blurRadius: 4.0,
-                    spreadRadius: 2.0,
+                    spreadRadius: 1.0,
                   )
                 ],
                 borderRadius: const BorderRadius.only(
@@ -245,19 +245,18 @@ class _ResNewScreenState extends State<ResNewScreen> {
                   topRight: Radius.circular(30),
                 ),
                 border: Border.all(color: Colors.black12),
-                color: const Color(0xffF6F4EB),
+                color: Colors.white,
               ),
               alignment: Alignment.centerLeft,
-              child: Container(
+              child: SizedBox(
                   width: size.width - size.width * 0.08,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         //padding: EdgeInsets.only(right: 100),
                         width: (size.width - (size.width * 0.08)) / 2,
-
                         child: Text(
                           widget.item?.guestnames ?? '-',
                           style: const TextStyle(
@@ -267,6 +266,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
                         ),
                       ),
                       Container(
+                        padding: EdgeInsets.only(right: 10),
                         width: (size.width - (size.width * 0.08)) / 2,
                         child: Text(
                           widget.item?.nationality ?? '-',
@@ -282,7 +282,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
             ),
             Container(
               decoration: BoxDecoration(
-                color: const Color(0xffF6F4EB),
+                color: Colors.white,
                 border: Border.all(color: Colors.black12),
               ),
               child: Row(
@@ -325,7 +325,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
               padding: EdgeInsets.all(size.width * 0.02),
               width: size.width,
               decoration: BoxDecoration(
-                color: const Color(0xffF6F4EB),
+                color: Colors.white,
                 border: Border.all(color: Colors.black12),
               ),
               child: Row(
@@ -361,10 +361,10 @@ class _ResNewScreenState extends State<ResNewScreen> {
               decoration: BoxDecoration(
                 boxShadow: const [
                   BoxShadow(
-                    color: Colors.red,
+                    color: Colors.blue,
                     offset: Offset(0.0, 2.0),
                     blurRadius: 4.0,
-                    spreadRadius: 2.0,
+                    spreadRadius: 1.0,
                   )
                 ],
                 borderRadius: const BorderRadius.only(
@@ -373,7 +373,7 @@ class _ResNewScreenState extends State<ResNewScreen> {
                 border: Border.all(
                   color: Colors.black12,
                 ),
-                color: const Color(0xffF6F4EB),
+                color: Colors.white,
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -391,33 +391,36 @@ class _ResNewScreenState extends State<ResNewScreen> {
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold)),
                   ),
-                  Container(
-                    height: size.height * 0.06,
-                    width: size.width * 0.3,
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          child: Text(
-                            "${widget.item?.adult ?? '-'}",
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                  if (widget.item?.adult != 0)
+                    Container(
+                      height: size.height * 0.06,
+                      width: size.width * 0.3,
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Text(
+                              "${widget.item?.adult ?? '-'}",
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        widget.item?.adult == 1
-                            ? const Icon(Icons.account_circle_sharp)
-                            : const Icon(Icons.people_outline_rounded),
-                        Text("${widget.item?.echd ?? '-'}",
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Icon(Icons.child_care_sharp),
-                      ],
+                          widget.item?.adult == 1
+                              ? const Icon(Icons.account_circle_sharp)
+                              : const Icon(Icons.people_outline_rounded),
+                          if (widget.item?.echd != 0)
+                            Text("${widget.item?.echd ?? '-'}",
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          if (widget.item?.echd != 0)
+                            const Icon(Icons.child_care_sharp),
+                        ],
+                      ),
                     ),
-                  ),
                   Container(
                     padding: const EdgeInsets.only(right: 10),
                     decoration: const BoxDecoration(
