@@ -227,217 +227,201 @@ class _ResNewScreenState extends State<ResNewScreen> {
           }
         },
         child: Container(
-            child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 10),
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.blueAccent,
-                    offset: Offset(0.2, -2.0),
-                    blurRadius: 4.0,
-                    spreadRadius: 1.0,
-                  )
-                ],
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-                border: Border.all(color: Colors.black12),
-                color: Colors.white,
+            decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.blueAccent,
+                  offset: Offset(0.2, -2.0),
+                  blurRadius: 4.0,
+                  spreadRadius: 1.0,
+                )
+              ],
+              borderRadius: const BorderRadius.all(
+                Radius.circular(25),
               ),
-              alignment: Alignment.centerLeft,
-              child: SizedBox(
-                  width: size.width - size.width * 0.08,
+              border: Border.all(color: Colors.black12),
+              color: Colors.white,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 10),
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                      width: size.width - size.width * 0.08,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            //padding: EdgeInsets.only(right: 100),
+                            width: (size.width - (size.width * 0.08)) / 2,
+                            child: Text(
+                              widget.item?.guestnames ?? '-',
+                              style: const TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.w400),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(right: 10),
+                            width: (size.width - (size.width * 0.08)) / 2,
+                            child: Text(
+                              widget.item?.nationality ?? '-',
+                              style: const TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.w400),
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.end,
+                              maxLines: 3,
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black12),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        //padding: EdgeInsets.only(right: 100),
-                        width: (size.width - (size.width * 0.08)) / 2,
-                        child: Text(
-                          widget.item?.guestnames ?? '-',
-                          style: const TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.w400),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
+                      Container(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.mode_night,
+                              size: 25,
+                            ),
+                            Text(
+                              "${widget.item!.night ?? '-'} Nights",
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          ],
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(right: 10),
-                        width: (size.width - (size.width * 0.08)) / 2,
-                        child: Text(
-                          widget.item?.nationality ?? '-',
-                          style: const TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.w400),
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.end,
-                          maxLines: 3,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const Icon(Icons.home),
+                            Text(
+                              "${widget.item?.roomtype?.toUpperCase() ?? '-'} / ${widget.item?.roomno ?? '-'}",
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
                         ),
                       )
                     ],
-                  )),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.black12),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.mode_night,
-                          size: 25,
-                        ),
-                        Text(
-                          "${widget.item!.night ?? '-'} Nights",
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ],
-                    ),
                   ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Icon(Icons.home),
-                        Text(
-                          "${widget.item?.roomtype?.toUpperCase() ?? '-'} / ${widget.item?.roomno ?? '-'}",
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                          ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(size.width * 0.02),
+                  width: size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black12),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child: Row(
+                          children: [
+                            Text(
+                              "Total: ${widget.item?.totalprice}",
+                              style: const TextStyle(
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
                         ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(size.width * 0.02),
-              width: size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.black12),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Text(
-                          "Total: ${widget.item?.totalprice}",
+                      ),
+                      SizedBox(
+                        width: size.width * 0.4,
+                      ),
+                      Container(
+                        child: Text(
+                          "${widget.item?.agency ?? '-'}",
                           style: const TextStyle(
                             fontSize: 20,
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                  SizedBox(
-                    width: size.width * 0.4,
-                  ),
-                  Container(
-                    child: Text(
-                      "${widget.item?.agency ?? '-'}",
-                      style: const TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.blue,
-                    offset: Offset(0.0, 2.0),
-                    blurRadius: 4.0,
-                    spreadRadius: 1.0,
-                  )
-                ],
-                borderRadius: const BorderRadius.only(
-                    bottomRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20)),
-                border: Border.all(
-                  color: Colors.black12,
                 ),
-                color: Colors.white,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 10),
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      borderRadius:
-                          BorderRadius.only(bottomLeft: Radius.circular(20)),
-                    ),
-                    child: Text(
-                        "${widget.item!.checkindate!.day}.${widget.item!.checkindate!.month}.${widget.item!.checkindate!.year} ",
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
-                  ),
-                  if (widget.item?.adult != 0)
-                    Container(
-                      height: size.height * 0.06,
-                      width: size.width * 0.3,
-                      alignment: Alignment.center,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              "${widget.item?.adult ?? '-'}",
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          widget.item?.adult == 1
-                              ? const Icon(Icons.account_circle_sharp)
-                              : const Icon(Icons.people_outline_rounded),
-                          if (widget.item?.echd != 0)
-                            Text("${widget.item?.echd ?? '-'}",
-                                style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          if (widget.item?.echd != 0)
-                            const Icon(Icons.child_care_sharp),
-                        ],
+                Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(left: 10),
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20)),
+                        ),
+                        child: Text(
+                            "${widget.item!.checkindate!.day}.${widget.item!.checkindate!.month}.${widget.item!.checkindate!.year} ",
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
-                    ),
-                  Container(
-                    padding: const EdgeInsets.only(right: 10),
-                    decoration: const BoxDecoration(
-                      borderRadius:
-                          BorderRadius.only(bottomRight: Radius.circular(20)),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                        "${widget.item!.checkoutdate!.day}.${widget.item!.checkoutdate!.month}.${widget.item!.checkoutdate!.year}",
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
+                      if (widget.item?.adult != 0)
+                        Container(
+                          height: size.height * 0.06,
+                          width: size.width * 0.3,
+                          alignment: Alignment.center,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                child: Text(
+                                  "${widget.item?.adult ?? '-'}",
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              widget.item?.adult == 1
+                                  ? const Icon(Icons.account_circle_sharp)
+                                  : const Icon(Icons.people_outline_rounded),
+                              if (widget.item?.echd != 0)
+                                Text("${widget.item?.echd ?? '-'}",
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold)),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              if (widget.item?.echd != 0)
+                                const Icon(Icons.child_care_sharp),
+                            ],
+                          ),
+                        ),
+                      Container(
+                        padding: const EdgeInsets.only(right: 10),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(20)),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                            "${widget.item!.checkoutdate!.day}.${widget.item!.checkoutdate!.month}.${widget.item!.checkoutdate!.year}",
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ],
-        )),
+                ),
+              ],
+            )),
       ),
     );
   }

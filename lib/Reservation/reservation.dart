@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:resv/Reservation/ReservationServic.dart';
 import 'package:resv/resnewscreen.dart';
@@ -19,6 +21,8 @@ class _ReservationScreenState extends State<ReservationScreen> {
   late DateTime checkInDate;
   late DateTime checkOutDate;
 
+  BehaviorSubject<bool> _isOpenSubject = BehaviorSubject<bool>.seeded(false);
+
   @override
   void initState() {
     super.initState();
@@ -29,6 +33,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
   void _toggleButton() {
     setState(() {
       isButtonPressed = !isButtonPressed;
+      _isOpenSubject.add(!_isOpenSubject.value);
     });
   }
 
@@ -58,69 +63,44 @@ class _ReservationScreenState extends State<ReservationScreen> {
             onPressed: () {
               return _toggleButton();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.filter_alt_outlined,
               size: 30,
             ),
           )
         ],
       ),
-      body: Stack(
+      body: Column(
         children: [
-          StreamBuilder(
-              stream: service.reservationList$.stream,
-              builder: (context, snapshot) {
-                if (service.reservationList$.value == null) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.red,
-                    ),
-                  );
-                } else if (service.reservationList$.value!.isEmpty) {
-                  return const Text("Reservation Listesi boş");
-                } else {
-                  return Container(
-                    color: Color(0xffDDDDDD),
-                    child: ListView.builder(
-                      itemCount: service.reservationList$.value!.length,
-                      itemBuilder: (
-                        context,
-                        index,
-                      ) {
-                        return ResNewScreen(
-                          item: service.reservationList$.value![index],
-                          // items: service.reservationGuestList$.value![index],
-                        );
-                      },
-                    ),
-                  );
-                }
-              }),
           if (isButtonPressed == true)
             Container(
-              height: size.height * 0.2,
-              color: Colors.lightBlue,
+              height: size.height * 0.16,
+              color: Colors.white,
               child: Column(
                 children: [
                   Container(
                     margin: EdgeInsets.only(top: 10),
-                    padding: EdgeInsets.all(4),
-                    child: TextField(
-                      controller: _searchTextController,
-                      style: TextStyle(fontSize: 18.0, color: Colors.black),
-                      decoration: InputDecoration(
-                        labelText: 'Search...',
-                        labelStyle:
-                            TextStyle(fontSize: 25.0, color: Colors.black),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                    padding: EdgeInsets.all(2),
+                    child: Column(
+                      children: [
+                        TextField(
+                          controller: _searchTextController,
+                          style: TextStyle(fontSize: 18.0, color: Colors.black),
+                          decoration: InputDecoration(
+                            labelText: 'Search...',
+                            labelStyle:
+                                TextStyle(fontSize: 25.0, color: Colors.black),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.blue, width: 2.0),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.blue, width: 2.0),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
+                      ],
                     ),
                   ),
                   Row(
@@ -133,6 +113,9 @@ class _ReservationScreenState extends State<ReservationScreen> {
                             child: Text(
                                 "${start.day}.${start.month}.${start.year}"),
                           )),
+                      IconButton(
+                          onPressed: pickDateRange,
+                          icon: Icon(Icons.calendar_month_outlined)),
                       Container(
                         width: size.width / 3,
                         child: ElevatedButton(
@@ -144,6 +127,38 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 ],
               ),
             ),
+          Expanded(
+            child: StreamBuilder(
+                stream: service.reservationList$.stream,
+                builder: (context, snapshot) {
+                  if (service.reservationList$.value == null) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.red,
+                      ),
+                    );
+                  } else if (service.reservationList$.value!.isEmpty) {
+                    return const Text("Reservation Listesi boş");
+                  } else {
+                    return Container(
+                      color: Color(0xffDDDDDD),
+                      child: ListView.builder(
+                        itemCount: service.reservationList$.value!.length,
+                        itemBuilder: (
+                          context,
+                          index,
+                        ) {
+                          return ResNewScreen(
+                            item: service.reservationList$.value![index],
+                            // items: service.reservationGuestList$.value![index],
+                          );
+                        },
+                      ),
+                    );
+                  }
+                }),
+          ),
+
           // Container(
           //   height: size.height * 0.15,
           //   color: Colors.lightBlue,
