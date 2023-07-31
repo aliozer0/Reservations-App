@@ -15,15 +15,9 @@ Hotel Reservation is a user-friendly and efficient mobile application for managi
 - **Stream Builder and BehaviorSubject:** Dynamic data is shown and updated using Stream Builder and BehaviorSubject, ensuring smooth and uninterrupted data flow within the app.
 
 ## Screenshots
-![Screenshot 1](assets/foto1.png)
-![Screenshot 2](assets/foto2.png)
-![Screenshot 3](assets/foto3.png)
 
-<p >
-  <img src="assets/foto1.png" alt="reservation" width="48%">
-  <img src="assets/foto2.png" alt="reservation" width="48%">
-  <img src="assets/foto3.png" alt="reservation" width="48%">
-</p>
+
+<img src="/Users/aliozer/Desktop/f/resv/assets/foto1.png" alt="alt text" width="320" height="180">
 ## Installation and Usage
 
 1. Download or clone the project from GitHub: `git clone https://github.com/aliozer0/Hotel-Reservation.git`
