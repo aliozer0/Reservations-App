@@ -16,9 +16,7 @@ Hotel Reservation is a user-friendly and efficient mobile application for managi
 
 ## Screenshots
 
-<img src="/assets/foto1.png" height="400" alt="Screenshot"/>
-<img src="/assets/foto2.png" height="400" alt="Screenshot"/>
-<img src="/assets/foto3.png" height="400" alt="Screenshot"/>
+<img src="/assets/foto1.png" height="400" alt="Screenshot"/> <img src="/assets/foto2.png" height="400" alt="Screenshot"/> <img src="/assets/foto3.png" height="400" alt="Screenshot"/>
 
 ## Installation and Usage
 
