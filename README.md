@@ -18,9 +18,7 @@ Hotel Reservation is a user-friendly and efficient mobile application for managi
 ![](assets/foto1.png)
 ![](assets/foto2.png)
 ![](assets/foto3.png)
- <img src="/assets/foto1.png" height="400" alt="Screenshot"/> 
-<img src="/assets/foto2.png" height="400" alt="Screenshot"/> 
-<img src="/assets/foto3.png" height="400" alt="Screenshot"/> 
+
 ## Installation and Usage
 
 1. Download or clone the project from GitHub: `git clone https://github.com/aliozer0/Hotel-Reservation.git`
