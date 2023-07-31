@@ -15,13 +15,15 @@ Hotel Reservation is a user-friendly and efficient mobile application for managi
 - **Stream Builder and BehaviorSubject:** Dynamic data is shown and updated using Stream Builder and BehaviorSubject, ensuring smooth and uninterrupted data flow within the app.
 
 ## Screenshots
-
+![](assets/foto1.png)
+![](assets/foto2.png)
+![](assets/foto3.png)
  <img src="/assets/foto1.png" height="400" alt="Screenshot"/> 
 <img src="/assets/foto2.png" height="400" alt="Screenshot"/> 
 <img src="/assets/foto3.png" height="400" alt="Screenshot"/> 
 ## Installation and Usage
 
-1. Download or clone the project from GitHub: `git clone https://github.com/username/Hotel-Reservation.git`
+1. Download or clone the project from GitHub: `git clone https://github.com/aliozer0/Hotel-Reservation.git`
 2. Install the required dependencies: `flutter pub get`
 3. Run the app: `flutter run`
 
@@ -37,10 +39,4 @@ If you would like to contribute to this project, please follow these steps:
 4. Push to your branch: `git push origin new-feature`
 5. Create a Pull Request.
 
-## License
 
-This project is licensed under the [License Name](LINK).
-
-## Contact
-
-If you have any questions or feedback regarding the project, please contact me at [your.email@example.com](mailto:your.email@example.com).
