@@ -15,9 +15,9 @@ Hotel Reservation is a user-friendly and efficient mobile application for managi
 - **Stream Builder and BehaviorSubject:** Dynamic data is shown and updated using Stream Builder and BehaviorSubject, ensuring smooth and uninterrupted data flow within the app.
 
 ## Screenshots
-![](assets/foto1.png)
-![](assets/foto2.png)
-![](assets/foto3.png)
+![Screenshot 1](assets/foto1.png)
+![Screenshot 2](assets/foto2.png)
+![Screenshot 3](assets/foto3.png)
 
 ## Installation and Usage
 
