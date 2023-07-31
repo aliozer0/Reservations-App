@@ -16,8 +16,10 @@ Hotel Reservation is a user-friendly and efficient mobile application for managi
 
 ## Screenshots
 
+<img src="/Users/aliozer/Desktop/f/resv/assets/foto1.png" height="400" alt="Screenshot"/>
+<img src="/Users/aliozer/Desktop/f/resv/assets/foto2.png" height="400" alt="Screenshot"/>
+<img src="/Users/aliozer/Desktop/f/resv/assets/foto3.png" height="400" alt="Screenshot"/>
 
-<img src="/Users/aliozer/Desktop/f/resv/assets/foto1.png" alt="alt text" width="320" height="180">
 ## Installation and Usage
 
 1. Download or clone the project from GitHub: `git clone https://github.com/aliozer0/Hotel-Reservation.git`
@@ -28,7 +30,7 @@ Once the app is launched, hotel staff can view the list of current reservations 
 
 ## Contribution
 
-If you would like to contribute to this project, please follow these steps:
+If you woulds like to contribute to this project, please follow these steps:
 
 1. Fork the project.
 2. Create a new branch: `git checkout -b new-feature`
